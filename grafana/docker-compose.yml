@@ -1,0 +1,19 @@
+version: "3.8"
+
+networks:
+  monitoring:
+    external: true  # Use the same external network
+
+services:
+  grafana:
+    image: grafana/grafana
+    container_name: grafana
+    restart: unless-stopped
+    ports:
+      - '3000:3000'
+    networks: 
+      - monitoring
+    volumes:
+      - grafana-storage:/var/lib/grafana
+volumes:
+  grafana-storage: {}
